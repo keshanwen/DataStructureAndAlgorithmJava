@@ -22,7 +22,125 @@ public class Main {
 		}
 
 		BinaryTrees.println(bst);
+		bst.levelOrderTraversal();
 	}
+
+	static void test2() {
+		Integer data[] = new Integer[] {
+			7, 4, 9, 2, 5, 8, 11, 3, 12, 1
+		};
+		
+		BinarySearchTree<Person> bst1 = new BinarySearchTree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst1.add(new Person(data[i]));
+		}
+		
+		BinaryTrees.println(bst1);
+		
+		BinarySearchTree<Person> bst2 = new BinarySearchTree<>(new Comparator<Person>() {
+			public int compare(Person o1, Person o2) {
+				return o2.getAge() - o1.getAge();
+			}
+		});
+		for (int i = 0; i < data.length; i++) {
+			bst2.add(new Person(data[i]));
+		}
+		BinaryTrees.println(bst2);
+	}
+
+	static void test3() {
+		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+		for (int i = 0; i < 40; i++) {
+			bst.add((int)(Math.random() * 100));
+		}
+		
+		String str = BinaryTrees.printString(bst);
+		str += "\n";
+		// 将文件打印到特定的文件中
+		Files.writeToFile("F:/1.txt", str, true);
+		
+		// BinaryTrees.println(bst);
+	}
+
+	static void test4() {
+		BinaryTrees.println(new BinaryTreeInfo() {
+			
+			@Override
+			public Object string(Object node) {
+				return node.toString() + "_";
+			}
+			
+			@Override
+			public Object root() {
+				return "A";
+			}
+			
+			@Override
+			public Object right(Object node) {
+				if (node.equals("A")) return "C";
+				if (node.equals("C")) return "E";
+				return null;
+			}
+			
+			@Override
+			public Object left(Object node) {
+				if (node.equals("A")) return "B";
+				if (node.equals("C")) return "D";
+				return null;
+			}
+		});
+		
+		// test3();
+		
+		
+				/*
+				* Java的匿名类，类似于iOS中的Block、JS中的闭包（function）
+				*/
+				
+		//		BinarySearchTree<Person> bst1 = new BinarySearchTree<>(new Comparator<Person>() {
+		//			@Override
+		//			public int compare(Person o1, Person o2) {
+		//				return 0;
+		//			}
+		//		});
+		//		bst1.add(new Person(12));
+		//		bst1.add(new Person(15));
+		//		
+		//		BinarySearchTree<Person> bst2 = new BinarySearchTree<>(new PersonComparator());
+		//		bst2.add(new Person(12));
+		//		bst2.add(new Person(15));
+		//
+				
+				
+		//		BinarySearchTree<Car> bst4 = new BinarySearchTree<>(new Car);
+		//		
+		//		
+		//		java.util.Comparator<Integer> iComparator;
+	}
+
+	static void test5() {
+		BinarySearchTree<Person> bst = new BinarySearchTree<>();
+		bst.add(new Person(10, "jack"));
+		bst.add(new Person(12, "rose"));
+		bst.add(new Person(6, "jim"));
+		
+		bst.add(new Person(10, "michael"));
+		
+		BinaryTrees.println(bst);
+
+	}
+
+	static void test6() {
+		Integer data[] = new Integer[] {
+			7, 4, 9, 2, 5
+		};
+
+		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst.add(data[i]);
+		}
+	}
+	
 
   public static void main(String[] args) {
 		test1();
