@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.lang.model.util.ElementScanner6;
+import javax.management.Query;
 
 import com.mj.printer.BinaryTreeInfo;
 
@@ -280,4 +281,62 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	// 			}
 	// 		}
 	// }
+		
+	// public boolean isComplete() {
+	// 	if ( root == null ) return false;
+		
+	// 	Queue<Node<E>> queue = new LinkedList<>();
+	// 	queue.offer(root);
+
+	// 	boolean leaf = false;
+
+	// 	while(!queue.isEmpty()) {
+	// 		Node<E> node = queue.poll();
+	// 		if (leaf && !node.isLeaf()) return false;
+
+	// 		if (node.left != null && node.right != null) {
+	// 			queue.offer(node.left);
+	// 			queue.offer(node.right);
+	// 		} else if (node.left == null && node.right != null) {
+	// 			return false;
+	// 		} else { // 后面遍历的节点必须是叶子节点
+	// 			leaf = true;
+	// 			if ( node.left != null ) {
+	// 				queue.offer(node.left);
+	// 			}
+	// 		}
+	// 	}
+
+	// 	return true;
+	// }
+
+	public boolean isComplete() {
+		if ( root == null ) return false;
+
+		Queue<Node<E>> queue = new LinkedList<>();
+		queue.offer(root);
+
+		boolean leaf = false;
+		while(!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			if (leaf && !node.isLeaf()) return false;
+
+			if (node.left != null) {
+				queue.offer(node.left);
+			} else if(node.right != null) { // node.left == null && node.right != null
+				return false;
+			}
+
+			// 这里注意， 当 node.left != null s时，会到下面的逻辑中来
+			if (node.right != null) {
+				queue.offer(node.right);
+			} else { // node.right = null
+				leaf = true;
+			}
+		}
+
+		return true;
+	}
+
+
 }

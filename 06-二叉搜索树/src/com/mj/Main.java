@@ -134,11 +134,37 @@ public class Main {
 		Integer data[] = new Integer[] {
 			7, 4, 9, 2, 5
 		};
-
+	
 		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
 		for (int i = 0; i < data.length; i++) {
 			bst.add(data[i]);
 		}
+	
+
+		BinaryTrees.println(bst);
+		System.out.println(bst.isComplete());
+	
+		// bst.levelOrderTraversal();
+		
+		/*
+		*       7
+		*    4    9
+			2   5
+		*/
+		
+		//		bst.levelOrder(new Visitor<Integer>() {
+		//			public void visit(Integer element) {
+		//				System.out.print("_" + element + "_ ");
+		//			}
+		//		});
+			
+		//		bst.inorder(new Visitor<Integer>() {
+		//			public void visit(Integer element) {
+		//				System.out.print("_" + (element + 3) + "_ ");
+		//			}
+		//		});
+		
+		// System.out.println(bst.height());
 	}
 
 	static void test9() {
@@ -187,6 +213,6 @@ public class Main {
 	
 
   public static void main(String[] args) {
-		test9();
+		test6();
 	}
 }
