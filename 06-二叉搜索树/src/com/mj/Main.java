@@ -22,7 +22,7 @@ public class Main {
 		}
 
 		BinaryTrees.println(bst);
-		bst.levelOrderTraversal();
+		// bst.levelOrderTraversal();
 	}
 
 	static void test2() {
@@ -140,9 +140,53 @@ public class Main {
 			bst.add(data[i]);
 		}
 	}
+
+	static void test9() {
+		Integer data[] = new Integer[] {
+				7, 4, 9, 2, 1
+		};
+	
+		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst.add(data[i]);
+		}
+		BinaryTrees.println(bst);
+	
+		// bst.preorder(new Visitor<Integer>() {
+		// 	public boolean visit(Integer element) {
+		// 		System.out.print(element + " ");
+		// 		return element == 2 ? true : false;
+		// 		// return false;
+		// 	}
+		// });
+
+		// bst.inorder(new Visitor<Integer>() {
+		// 	public boolean visit(Integer element) {
+		// 		System.out.print(element + " ");
+		// 		return element == 4 ? true : false;
+		// 	}
+		// });
+		// System.out.println();
+		
+		// bst.postorder(new Visitor<Integer>() {
+		// 	public boolean visit(Integer element) {
+		// 		System.out.print(element + " ");
+		// 		return element == 4 ? true : false;
+		// 	}
+		// });
+		// System.out.println();
+		bst.levelOrder(new Visitor<Integer>() {
+			public boolean visit(Integer element) {
+				System.out.print(element + " ");
+				return element == 9 ? true : false;
+				// return false;
+			}
+		});
+		System.out.println();
+	}
 	
 
   public static void main(String[] args) {
-		test1();
+		test9();
 	}
 }
