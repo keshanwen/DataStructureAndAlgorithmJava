@@ -167,6 +167,24 @@ public class Main {
 		System.out.println(bst.height());
 	}
 
+	static void test7() {
+		Integer data[] = new Integer[] {
+				7, 4, 9, 2, 5, 8, 11, 3, 12, 1
+		};
+		
+		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+		for (int i = 0; i < data.length; i++) {
+			bst.add(data[i]);
+		}
+		
+		BinaryTrees.println(bst);
+		
+		bst.remove(7);
+		
+		BinaryTrees.println(bst);
+	}
+	
+
 	static void test9() {
 		Integer data[] = new Integer[] {
 				7, 4, 9, 2, 1
@@ -213,6 +231,6 @@ public class Main {
 	
 
   public static void main(String[] args) {
-		test6();
+		test7();
 	}
 }

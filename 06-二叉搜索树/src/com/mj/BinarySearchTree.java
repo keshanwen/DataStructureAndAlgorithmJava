@@ -420,5 +420,55 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		if (node == null) return 0;
 		return 1 + Math.max(height(node.left), height(node.right));
 	}
+
+	public void remove(E element) {
+		remove(node(element));
+	}	
+
+	public boolean contains(E element) {
+		return node(element) != null;
+	}
+
+	private void remove(Node<E> node) {
+		if (node == null) return;
+
+		size--;
+
+		// 度为2的节点
+		if (node.hasTwoChildren()) {
+			// 找到后继节点
+			Node<E> s = successor(node);
+			// 用后继节点的值覆盖度为2的节点值
+			node.element = s.element;
+			// 删除后继节点 (这里有点难理解，将 s 的指向指向 node ,因为下面会对 node 操作，其实就是对 s 后继节点的操作)
+			node = s;
+		}
+
+		// 删除node 节点（node 的度必然是 1 或者 0）(这里为什么度是0 或者1 呢？ 如果度为 2 那么进入上面那段逻辑，将后继节点赋值给了 node ，而后继节点必然是度为 1 或者 0的节点)
+		Node<E> replacement = node.left != null ? node.left : node.right;
+
+		if (replacement != null) { // node 是度为1的节点
+			// 更改 parent
+			replacement.parent = node.parent;
+			// 更改 parent的left， right  的指向
+			if (node.parent == null) { // node 是度为1的节点，并且是根节点
+				root = replacement;
+			} else if (node == node.parent.left) {
+				node.parent.left = replacement;
+			} else { // node == node.parent.right
+				node.parent.right = replacement;
+			}
+		} else if (node.parent == null) { // node是叶子节点并且是根节点
+			root = null;
+		} else { // node 是叶子节点，但不是根节点
+			if (node == node.parent.left) {
+				node.parent.left = null;
+			} else { // node = node.parent.right
+				node.parent.right = null;
+			}
+		}
+
+
+	}
 	
 }
