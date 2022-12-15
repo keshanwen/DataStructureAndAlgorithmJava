@@ -11,6 +11,7 @@ import com.mj.printer.BinaryTreeInfo;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TreeTableCell;
 
 @SuppressWarnings("unchecked")
 public class BinarySearchTree<E> implements BinaryTreeInfo {
@@ -338,5 +339,46 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		return true;
 	}
 
+	@SuppressWarnings("unused")
+	private Node<E> predecessor(Node<E> node) {
+		if (node == null) return null; 
 
+		// 前驱节点在左字树当中 (left.right.right...)
+		Node<E> p = node.left;
+		if (p != null) {
+			while (p.right != null) {
+				p = p.right;
+			}
+			return p;
+		}
+
+		// 从父节点，祖父节点中找寻前驱节点
+		while(node.parent != null && node == node.parent.left ) {
+			node = node.parent;
+		}
+
+		return node.parent;
+	}
+	
+	@SuppressWarnings("unused")
+	private Node<E> successor(Node<E> node) {
+		if (node == null) return null;
+		
+		// 后继节点在右子树当中 (right.left.left.left...)
+		Node<E> p = node.right;
+		if (p != null) {
+			while(p.left != null) {
+				p = p.left;
+			}
+			return p;
+		}
+
+		// 从父节点，祖父节点中寻找后继节点
+		while(node.parent != null && node == node.parent.right) {
+			node = node.parent;
+		}
+
+		return node.parent;
+	}
+	
 }
