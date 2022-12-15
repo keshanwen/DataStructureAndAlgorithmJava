@@ -142,7 +142,7 @@ public class Main {
 	
 
 		BinaryTrees.println(bst);
-		System.out.println(bst.isComplete());
+		// System.out.println(bst.isComplete());
 	
 		// bst.levelOrderTraversal();
 		
@@ -164,7 +164,7 @@ public class Main {
 		//			}
 		//		});
 		
-		// System.out.println(bst.height());
+		System.out.println(bst.height());
 	}
 
 	static void test9() {
